@@ -6,8 +6,7 @@ import json
 import initmysql
 from stem import Signal
 from stem.control import Controller
-controller=Controller.from_port(port=9051)
-controller.authenticate(password='my')
+
 
 
 
@@ -42,6 +41,8 @@ while True:
     t1=time.time()
     initmysql.initMysql(data)
     # time.sleep(10)
+    controller=Controller.from_port(port=9051)
+    controller.authenticate(password='my')
     controller.signal(Signal.NEWNYM)
     time.sleep(controller.get_newnym_wait())
     newIP = "0.0.0.0"
